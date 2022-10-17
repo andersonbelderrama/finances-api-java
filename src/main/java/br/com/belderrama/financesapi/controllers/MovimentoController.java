@@ -30,7 +30,7 @@ public class MovimentoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Movimento> get(@PathVariable Integer id){
+    public ResponseEntity<Movimento> get(@PathVariable Long id){
         try {
             Movimento movimento = movimentoService.getMovimento(id);
             return new ResponseEntity<Movimento>(movimento, HttpStatus.OK);
@@ -45,7 +45,7 @@ public class MovimentoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Movimento movimento, @PathVariable Integer id){
+    public ResponseEntity<?> update(@RequestBody Movimento movimento, @PathVariable Long id){
         try {
             Movimento existMovimento = movimentoService.getMovimento(id);
             movimento.setId(id);
@@ -57,7 +57,7 @@ public class MovimentoController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id){
+    public void delete(@PathVariable Long id){
         movimentoService.deleteMovimento(id);
     }
 

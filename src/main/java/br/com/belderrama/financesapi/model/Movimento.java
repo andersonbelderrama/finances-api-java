@@ -1,35 +1,55 @@
 package br.com.belderrama.financesapi.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import br.com.belderrama.financesapi.enums.TipoMovimento;
+
+
+
 @Entity
 @Table (name = "movimentos")
 public class Movimento {
     
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String descricao;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime data;
+    
+    private Integer tipoMovimento;
+
     private Double valor;
 
     public Movimento(){
+
     }
 
-    public Movimento(int id, String descricao, Double valor){
+    public Movimento(Long id, String descricao, LocalDateTime data, TipoMovimento tipoMovimento, Double valor){
+        super();
         this.id = id;
         this.descricao = descricao;
+        this.data = data;
+        setTipoMovimento(tipoMovimento);
         this.valor = valor;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,4 +69,26 @@ public class Movimento {
         this.valor = valor;
     }
 
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
+
+    public TipoMovimento getTipoMovimento() {
+        return TipoMovimento.valueOf(tipoMovimento);
+    }
+
+    public void setTipoMovimento(TipoMovimento tipoMovimento) {
+        if(tipoMovimento != null){
+            this.tipoMovimento = tipoMovimento.getCode();
+        }
+        
+    }
+
+
+    
 }

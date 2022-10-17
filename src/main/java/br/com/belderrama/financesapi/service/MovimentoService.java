@@ -25,11 +25,11 @@ public class MovimentoService {
         movimentacaoRepository.save(movimento);
     }
 
-    public Movimento getMovimento(Integer id){
+    public Movimento getMovimento(Long id){
         return movimentacaoRepository.findById(id).get();
     }
 
-    public void deleteMovimento(Integer id){
+    public void deleteMovimento(Long id){
         movimentacaoRepository.deleteById(id);
     }
 
