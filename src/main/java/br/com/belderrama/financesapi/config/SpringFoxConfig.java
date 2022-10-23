@@ -1,5 +1,7 @@
 package br.com.belderrama.financesapi.config;
 
+import java.util.ArrayList;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -7,6 +9,7 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.VendorExtension;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
@@ -30,7 +33,7 @@ public class SpringFoxConfig {
         "Termos do Serviço", 
         new Contact("Anderson Belderrama", "http://andersonbelderrama.com.br", "andersonbelderrama@gmail.com"), 
         "Apache License Version 2.0", 
-        "http://www.apache.org/licenses/LICENSE-2.0", null//new ArrayList<VendorExtension>()
+        "http://www.apache.org/licenses/LICENSE-2.0", new ArrayList<VendorExtension>()
         );
 
         return apiInfo;
